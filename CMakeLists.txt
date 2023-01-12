@@ -38,21 +38,21 @@ if(NBT_USE_ZLIB)
     list(APPEND NBT_SOURCES ${NBT_SOURCES_Z})
 endif()
 
-add_library(nbt++ ${NBT_SOURCES})
-target_include_directories(nbt++ PUBLIC $<BUILD_INTERFACE:include ${CMAKE_CURRENT_BINARY_DIR}>)
+add_library(NBT++ ${NBT_SOURCES})
+target_include_directories(NBT++ PUBLIC $<BUILD_INTERFACE:include ${CMAKE_CURRENT_BINARY_DIR}>)
 
-target_compile_definitions(nbt++ PRIVATE "-DNBT_BUILD_LIB")
+target_compile_definitions(NBT++ PRIVATE "-DNBT_BUILD_LIB")
 
 if(NBT_USE_ZLIB)
-    target_link_libraries(nbt++ ${ZLIB_LIBRARY})
-    target_include_directories(nbt++ PUBLIC $<BUILD_INTERFACE:${ZLIB_INCLUDE_DIRS}>)
-    target_compile_definitions(nbt++ PUBLIC "-DNBT_HAVE_ZLIB")
+    target_link_libraries(NBT++ ${ZLIB_LIBRARY})
+    target_include_directories(NBT++ PUBLIC $<BUILD_INTERFACE:${ZLIB_INCLUDE_DIRS}>)
+    target_compile_definitions(NBT++ PUBLIC "-DNBT_HAVE_ZLIB")
 endif()
-# target_compile_options(nbt++ PUBLIC -std=c++11)
-generate_export_header(nbt++ BASE_NAME nbt)
+# target_compile_options(NBT++ PUBLIC -std=c++11)
+generate_export_header(NBT++ BASE_NAME nbt)
 
 if(${BUILD_SHARED_LIBS})
-    set_target_properties(nbt++ PROPERTIES
+    set_target_properties(NBT++ PROPERTIES
         CXX_VISIBILITY_PRESET hidden
         VISIBILITY_INLINES_HIDDEN 1)
 endif()
@@ -66,26 +66,26 @@ endif()
 
 # create and install a cmake package
 
-target_include_directories(nbt++ PUBLIC INTERFACE $<INSTALL_INTERFACE:include>)
+target_include_directories(NBT++ PUBLIC INTERFACE $<INSTALL_INTERFACE:include>)
 
 ## alias
-add_library(libNBT++::nbt++ ALIAS nbt++)
+add_library(libNBT++::NBT++ ALIAS NBT++)
 
 ## install headers
-file(GLOB libnbt++_install_headers ${CMAKE_SOURCE_DIR}/include/*.h)
-install(FILES ${libnbt++_install_headers} ${CMAKE_BINARY_DIR}/nbt_export.h DESTINATION include/libNBT++)
+file(GLOB libNBT++_install_headers ${CMAKE_SOURCE_DIR}/include/*.h)
+install(FILES ${libNBT++_install_headers} ${CMAKE_BINARY_DIR}/nbt_export.h DESTINATION include/libNBT++)
 
 ### io headers
-file(GLOB libnbt++_install_headers_io ${CMAKE_SOURCE_DIR}/include/io/*.h)
-install(FILES ${libnbt++_install_headers_io} DESTINATION include/libNBT++/io)
+file(GLOB libNBT++_install_headers_io ${CMAKE_SOURCE_DIR}/include/io/*.h)
+install(FILES ${libNBT++_install_headers_io} DESTINATION include/libNBT++/io)
 ### text headers
-file(GLOB libnbt++_install_headers_text ${CMAKE_SOURCE_DIR}/include/text/*.h)
-install(FILES ${libnbt++_install_headers_text} DESTINATION include/libNBT++/text)
+file(GLOB libNBT++_install_headers_text ${CMAKE_SOURCE_DIR}/include/text/*.h)
+install(FILES ${libNBT++_install_headers_text} DESTINATION include/libNBT++/text)
 
 
 ## install core library
 install( 
-  TARGETS nbt++
+  TARGETS NBT++
   EXPORT libNBT++Targets
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib
