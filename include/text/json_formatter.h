@@ -20,9 +20,17 @@
 #ifndef JSON_FORMATTER_H_INCLUDED
 #define JSON_FORMATTER_H_INCLUDED
 
-#include "tagfwd.h"
 #include <ostream>
+
+#ifdef NBT_BUILD_LIB
+#include "tagfwd.h"
 #include "nbt_export.h"
+
+#else
+#include "../tagfwd.h"
+#include "../nbt_export.h"
+
+#endif //NBT_BUILD_LIB
 
 namespace nbt
 {

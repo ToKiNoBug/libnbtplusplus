@@ -20,7 +20,14 @@
 #ifndef IZLIBSTREAM_H_INCLUDED
 #define IZLIBSTREAM_H_INCLUDED
 
+#ifdef NBT_BUILD_LIB
 #include "io/zlib_streambuf.h"
+
+#else
+#include "zlib_streambuf.h"
+
+#endif//#ifdef NBT_BUILD_LIB
+
 #include <istream>
 #include <zlib.h>
 

@@ -20,8 +20,15 @@
 #ifndef STREAM_WRITER_H_INCLUDED
 #define STREAM_WRITER_H_INCLUDED
 
+#ifdef NBT_BUILD_LIB
 #include "tag.h"
 #include "endian_str.h"
+
+#else
+#include "../tag.h"
+#include "../endian_str.h"
+#endif
+
 #include <iosfwd>
 #include <string>
 

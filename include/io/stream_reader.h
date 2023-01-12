@@ -20,9 +20,18 @@
 #ifndef STREAM_READER_H_INCLUDED
 #define STREAM_READER_H_INCLUDED
 
+#ifdef NBT_BUILD_LIB
 #include "endian_str.h"
 #include "tag.h"
 #include "tag_compound.h"
+
+#else
+#include "../endian_str.h"
+#include "../tag.h"
+#include "../tag_compound.h"
+
+#endif//#ifdef NBT_BUILD_LIB
+
 #include <iosfwd>
 #include <memory>
 #include <stdexcept>

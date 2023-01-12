@@ -41,6 +41,8 @@ endif()
 add_library(nbt++ ${NBT_SOURCES})
 target_include_directories(nbt++ PUBLIC $<BUILD_INTERFACE:include ${CMAKE_CURRENT_BINARY_DIR}>)
 
+target_compile_definitions(nbt++ PRIVATE "-DNBT_BUILD_LIB")
+
 if(NBT_USE_ZLIB)
     target_link_libraries(nbt++ ${ZLIB_LIBRARY})
     target_include_directories(nbt++ PUBLIC $<BUILD_INTERFACE:${ZLIB_INCLUDE_DIRS}>)
@@ -71,10 +73,7 @@ add_library(libNBT++::nbt++ ALIAS nbt++)
 
 ## install headers
 file(GLOB libnbt++_install_headers ${CMAKE_SOURCE_DIR}/include/*.h)
-if(${BUILD_SHARED_LIBS})
-set(libnbt++_install_headers ${libnbt++_install_headers} ${CMAKE_BINARY_DIR}/nbt_export.h)
-endif()
-install(FILES ${libnbt++_install_headers} DESTINATION include/libNBT++)
+install(FILES ${libnbt++_install_headers} ${CMAKE_BINARY_DIR}/nbt_export.h DESTINATION include/libNBT++)
 
 ### io headers
 file(GLOB libnbt++_install_headers_io ${CMAKE_SOURCE_DIR}/include/io/*.h)
