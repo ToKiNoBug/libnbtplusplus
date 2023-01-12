@@ -9,3 +9,6 @@
 /obj
 /build
 /doxygen
+
+.cache/*
+compile_commands.json
