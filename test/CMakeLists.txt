@@ -1,10 +1,12 @@
 enable_testing()
 find_package(CxxTest REQUIRED)
 
+add_library(nbt++ ALIAS NBT++)
+
 include_directories(${libnbt++_SOURCE_DIR}/include)
 include_directories(${CXXTEST_INCLUDE_DIR})
 
-#Specifies that the directory containing the testfiles get copied when the target is built
+# Specifies that the directory containing the testfiles get copied when the target is built
 function(use_testfiles target)
     add_custom_command(TARGET ${target} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E
