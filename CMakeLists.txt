@@ -45,7 +45,7 @@ target_include_directories(NBT++ PUBLIC $<BUILD_INTERFACE:include ${CMAKE_CURREN
 target_compile_definitions(NBT++ PRIVATE "-DNBT_BUILD_LIB")
 
 if(NBT_USE_ZLIB)
-  target_link_libraries(NBT++ ${ZLIB_LIBRARY})
+  target_link_libraries(NBT++ PUBLIC ${ZLIB_LIBRARY})
   target_include_directories(NBT++ PUBLIC $<BUILD_INTERFACE:${ZLIB_INCLUDE_DIRS}>)
   target_compile_definitions(NBT++ PUBLIC "-DNBT_HAVE_ZLIB")
 endif()
